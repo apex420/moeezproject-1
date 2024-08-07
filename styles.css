@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --neon-text-color: #f40;
+    --neon-border-color: #08f;
+}
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    scroll-behavior: smooth;
+    color: white;
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: var(--neon-text-color);
+    text-decoration: none;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-text-color);
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-text-color), 0 0 20px var(--neon-text-color), 0 0 30px var(--neon-text-color);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    transform: perspective(1000px) rotateX(10deg);
+    transition: transform 0.3s ease;
+}
+
+.hero-content:hover {
+    transform: perspective(1000px) rotateX(0deg);
+}
+
+.glitch {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 var(--neon-text-color), -0.05em -0.025em 0 var(--neon-border-color),
+                 0.025em 0.05em 0 var(--neon-border-color);
+    animation: glitch 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+.neon-text {
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--neon-text-color),
+                 0 0 35px var(--neon-text-color), 0 0 40px var(--neon-text-color), 0 0 50px var(--neon-text-color),
+                 0 0 75px var(--neon-text-color);
+}
+
+.btn {
+    background-color: transparent;
+    color: var(--neon-text-color);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 2px solid var(--neon-text-color);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px var(--neon-text-color);
+    box-shadow: 0 0 5px var(--neon-text-color);
+}
+
+.btn:hover {
+    background-color: var(--neon-text-color);
+    color: #000;
+    text-shadow: none;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+}
+
+.products-section, .about-section, .contact-section {
+    padding: 4rem 2rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.products-section.visible, .about-section.visible, .contact-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    perspective: 1000px;
+    height: 300px;
+}
+
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card:hover .card-content {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-back {
+    background-color: var(--neon-border-color);
+    color: #fff;
+    transform: rotateY(180deg);
+    padding: 1rem;
+    text-align: center;
+}
+
+.quote-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 5px solid var(--neon-border-color);
+    max-width: 300px;
+    box-shadow: 0 0 10px var(--neon-border-color);
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+.contact-section form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.glowing-border {
+    border: 2px solid var(--neon-border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 0 10px var(--neon-border-color);
+    animation: glow 2s infinite alternate;
+}
+
+.neon-input {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--neon-border-color);
+    color: #fff;
+    padding: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.neon-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--neon-border-color);
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+    }
+    100% {
+        clip: rect(70px, 9999px, 71px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(15px, 9999px, 100px, 0);
+    }
+    100% {
+        clip: rect(43px, 9999px, 56px, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px var(--neon-border-color);
+    }
+    to {
+        box-shadow: 0 0 20px var(--neon-border-color);
+    }
+}
